@@ -1,0 +1,85 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseHead title="Wrenlabs Terminal" description="A tech lab by Nathan Wren" />
+
+<div class="bg-black text-green-400 font-mono min-h-screen flex flex-col">
+  <Header />
+
+  <main class="flex-1 p-6 max-w-4xl mx-auto">
+    <div id="terminal" class="bg-black border border-green-600 p-6 rounded-lg shadow-lg whitespace-pre-wrap">
+      <div>Wrenlabs v1.0.0</div>
+      <div>&nbsp;</div>
+      <div>> Welcome to the Wrenlabs terminal.</div>
+      <div>> Type <span class="text-yellow-400">'help'</span> to see available commands.</div>
+      <div>&nbsp;</div>
+      <div id="log" class="mb-4 space-y-1"></div>
+      <div class="command-line flex items-center">
+        <span>&gt; </span>
+        <input
+          id="input"
+          type="text"
+          class="bg-black text-green-400 border-none outline-none ml-2 w-full"
+          autocomplete="off"
+          autofocus
+        />
+        <span class="blink ml-1">█</span>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</div>
+
+<script is:inline>
+  const input = document.getElementById('input');
+  const log = document.getElementById('log');
+
+  const commands = {
+    help: "Available commands:\n - projects\n - about\n - clear",
+    projects: "Check out:\n - /projects/homelab\n - /projects/portfolio-site\n - /projects/k8s-lab",
+    about: "redirect"
+  };
+
+  function printLine(text) {
+    const line = document.createElement('div');
+    line.textContent = text;
+    log.appendChild(line);
+  }
+
+  input?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const command = input.value.trim();
+      printLine(`> ${command}`);
+
+      if (command === 'clear') {
+        log.innerHTML = '';
+      } else if (commands[command]) {
+        if (commands[command] === 'redirect') {
+          window.location.href = '/about';
+        } else {
+          commands[command].split('\n').forEach(line => printLine(line));
+        }
+      } else {
+        printLine(`Command not found: '${command}'. Try 'help'.`);
+      }
+
+      input.value = '';
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  });
+</script>
+
+<style>
+  .blink {
+    animation: blink 1s step-start 0s infinite;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+</style>
