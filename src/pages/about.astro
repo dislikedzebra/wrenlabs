@@ -30,8 +30,8 @@ import Footer from '../components/Footer.astro';
   let input = document.getElementById('input');
 
   const commands = {
-    help: "Available commands:\\n - projects\\n - about\\n - clear",
-    projects: "Check out:\\n - /projects/homelab\\n - /projects/portfolio-site\\n - /projects/k8s-lab",
+    help: "Available commands:\n - projects\n - about\n - clear",
+    projects: "Check out:\n - /projects/homelab\n - /projects/portfolio-site\n - /projects/k8s-lab",
     about: "Nathan Wren — Tech enthusiast, sysadmin, and builder of Wrenlabs.",
     clear: 'CLEAR'
   };
@@ -56,7 +56,7 @@ import Footer from '../components/Footer.astro';
             <div>Wrenlabs v1.0.0</div>
             <div>&nbsp;</div>
             <div>> Welcome to the Wrenlabs terminal.</div>
-            <div>> Type <span style='color: #ffff66'>'help'</span> to see available commands.</div>
+            <div>> Type <span class='text-yellow-400'>'help'</span> to see available commands.</div>
             <div>&nbsp;</div>
           `;
         } else {
@@ -64,7 +64,7 @@ import Footer from '../components/Footer.astro';
           terminal.appendChild(responseDiv);
         }
       } else {
-        responseDiv.innerText = \`Command not found: '\${cmdText}'. Try 'help'.\`;
+        responseDiv.innerText = `Command not found: '${cmdText}'. Try 'help'.`;
         terminal.appendChild(responseDiv);
       }
 
