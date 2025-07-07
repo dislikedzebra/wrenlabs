@@ -8,18 +8,57 @@ import Footer from '../components/Footer.astro';
 <html lang="en">
   <head>
     <BaseHead title="Wrenlabs Terminal" description="A tech lab by Nathan Wren" />
+    <style>
+      body {
+        background-color: #0d0d0d;
+        color: #33ff33;
+        font-family: 'Courier New', Courier, monospace;
+      }
+
+      #terminal {
+        max-width: 800px;
+        margin: 4rem auto;
+        padding: 1.5rem;
+        background-color: #000000;
+        border: 1px solid #333;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        white-space: pre-wrap;
+      }
+
+      .command-line {
+        display: flex;
+        align-items: center;
+      }
+
+      #input {
+        outline: none;
+        display: inline-block;
+        min-width: 1ch;
+      }
+
+      .blink {
+        animation: blink 1s step-start 0s infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
   </head>
-  <body class="bg-black text-green-400 font-mono min-h-screen flex flex-col">
+  <body>
     <Header />
-    <main class="flex-1 p-6 max-w-4xl mx-auto">
-      <div id="terminal" class="whitespace-pre-wrap">
+    <main>
+      <div id="terminal">
         <div>Wrenlabs v1.0.0</div>
         <div>&nbsp;</div>
         <div>> Welcome to the Wrenlabs terminal.</div>
-        <div>> Type <span class="text-yellow-400">'help'</span> to see available commands.</div>
+        <div>> Type <span style="color: #ffff66">'help'</span> to see available commands.</div>
         <div>&nbsp;</div>
         <div class="command-line">
-          <span>&gt; </span><span id="input" contenteditable="true" class="outline-none inline-block"></span>
+          <span>&gt; </span><span id="input" contenteditable="true"></span><span class="blink">█</span>
         </div>
       </div>
     </main>
@@ -27,41 +66,56 @@ import Footer from '../components/Footer.astro';
 
     <script>
       const terminal = document.getElementById('terminal');
-      const input = document.getElementById('input');
-      input.focus();
+      let input = document.getElementById('input');
 
       const commands = {
         help: "Available commands:\n - projects\n - about\n - clear",
         projects: "Check out:\n - /projects/homelab\n - /projects/portfolio-site\n - /projects/k8s-lab",
         about: "Nathan Wren — Tech enthusiast, sysadmin, and builder of Wrenlabs.",
-        clear: ""
+        clear: 'CLEAR'
       };
+
+      input.focus();
+
+      document.addEventListener('click', () => input.focus());
 
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
           e.preventDefault();
-          const cmd = input.innerText.trim();
-          const output = document.createElement('div');
-          output.innerHTML = `> ${cmd}`;
-          terminal.insertBefore(output, input.parentNode.nextSibling);
+          const cmdText = input.innerText.trim();
 
-          const response = document.createElement('div');
-          response.innerText = commands[cmd] || `'${cmd}' is not recognized. Type 'help'.`;
-          terminal.insertBefore(response, input.parentNode.nextSibling);
+          const cmdDiv = document.createElement('div');
+          cmdDiv.innerHTML = `> ${cmdText}`;
+          terminal.appendChild(cmdDiv);
 
-          input.innerText = '';
-          window.scrollTo(0, document.body.scrollHeight);
+          const responseDiv = document.createElement('div');
 
-          if (cmd === 'clear') {
-            terminal.innerHTML = `
-              <div>Wrenlabs v1.0.0</div>
-              <div>&nbsp;</div>
-              <div>> Welcome to the Wrenlabs terminal.</div>
-              <div>> Type <span class="text-yellow-400">'help'</span> to see available commands.</div>
-              <div>&nbsp;</div>
-              <div class="command-line"><span>&gt; </span><span id="input" contenteditable="true" class="outline-none inline-block"></span></div>
-            `;
+          if (commands[cmdText]) {
+            if (cmdText === 'clear') {
+              terminal.innerHTML = `
+                <div>Wrenlabs v1.0.0</div>
+                <div>&nbsp;</div>
+                <div>> Welcome to the Wrenlabs terminal.</div>
+                <div>> Type <span style='color: #ffff66'>'help'</span> to see available commands.</div>
+                <div>&nbsp;</div>
+              `;
+            } else {
+              responseDiv.innerText = commands[cmdText];
+              terminal.appendChild(responseDiv);
+            }
+          } else {
+            responseDiv.innerText = `Command not found: '${cmdText}'. Try 'help'.`;
+            terminal.appendChild(responseDiv);
           }
+
+          const newCmd = document.createElement('div');
+          newCmd.className = 'command-line';
+          newCmd.innerHTML = `<span>> </span><span id="input" contenteditable="true"></span><span class="blink">█</span>`;
+          terminal.appendChild(newCmd);
+
+          input = newCmd.querySelector('#input');
+          input.focus();
+          window.scrollTo(0, document.body.scrollHeight);
         }
       });
     </script>
