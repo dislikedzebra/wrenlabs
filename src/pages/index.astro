@@ -41,7 +41,7 @@ import Footer from '../components/Footer.astro';
   const commands = {
     help: "Available commands:\n - projects\n - about\n - clear",
     projects: "Check out:\n - /projects/homelab\n - /projects/portfolio-site\n - /projects/k8s-lab",
-    about: "Nathan Wren — Tech enthusiast, sysadmin, and builder of Wrenlabs."
+    about: "redirect"
   };
 
   function printLine(text) {
@@ -58,7 +58,11 @@ import Footer from '../components/Footer.astro';
       if (command === 'clear') {
         log.innerHTML = '';
       } else if (commands[command]) {
-        commands[command].split('\n').forEach(line => printLine(line));
+        if (commands[command] === 'redirect') {
+          window.location.href = '/about';
+        } else {
+          commands[command].split('\n').forEach(line => printLine(line));
+        }
       } else {
         printLine(`Command not found: '${command}'. Try 'help'.`);
       }
