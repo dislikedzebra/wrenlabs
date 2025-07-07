@@ -5,42 +5,47 @@ import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
-<BaseHead title="About - Wrenlabs" description={SITE_DESCRIPTION} />
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+ <style>
+<body class="bg-gray-800 text-gray-200 font-sans">
+</style>
 
-<div class="bg-gray-800 text-gray-200 font-sans min-h-screen flex flex-col">
-  <Header />
-
-  <main class="max-w-4xl mx-auto px-6 py-16 flex-grow">
-    <h1 class="text-4xl font-bold text-white mb-4">🧬 WrenLabs</h1>
-    <p class="text-lg text-gray-400 mb-8">
-      Welcome to my digital lab — a space where tech experiments, side projects, and portfolio pieces come to life.
-    </p>
-
-    <section class="mb-16">
-      <h2 class="text-2xl font-semibold text-white mb-2">🚀 Featured Projects</h2>
-      <ul class="list-disc list-inside space-y-2 text-gray-300">
-        <li>
-          <a href="/terminal" class="text-blue-400 hover:underline">Terminal</a> – A deep dive into my self-hosted setup, services, and automation stack. <em>(Coming Soon)</em>
-        </li>
-      </ul>
-    </section>
-
-    <section class="mb-16">
-      <h2 class="text-2xl font-semibold text-white mb-2">🧠 About Me</h2>
-      <p class="text-gray-400">
-        I'm a curious builder and explorer of open-source tech. Wrenlabs is my playground for learning, breaking, and building. I specialize in home server setups, automation, containerization, and more.
+    <Header />
+    <main class="max-w-4xl mx-auto px-6 py-16">
+      <h1 class="text-4xl font-bold text-white mb-4">🧬 WrenLabs</h1>
+      <p class="text-lg text-gray-400 mb-8">
+        Welcome to my digital lab — a space where tech experiments, side projects, and portfolio pieces come to life.
       </p>
-    </section>
 
-    <section>
-      <h2 class="text-2xl font-semibold text-white mb-2">📬 Connect</h2>
-      <p class="text-gray-400">Follow along or get in touch:</p>
-      <ul class="list-none mt-2 space-y-1 text-gray-300">
-        <li><a href="https://github.com/dislikedzebra" class="text-blue-400 hover:underline">GitHub</a></li>
-        <li><a href="mailto:nathan@wrenlabs.net" class="text-blue-400 hover:underline">Email</a></li>
-      </ul>
-    </section>
-  </main>
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-white mb-2">🚀 Featured Projects</h2>
+          <li><a href="/pages/Terminal" class="text-blue-400 hover:underline">Terminal</a> – A deep dive into my self-hosted setup, services, and automation stack.- COMING SOON </li>
+        <ul class="list-disc list-inside space-y-2 text-gray-300">
+        </ul>
+      </section>
 
-  <Footer />
-</div>
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-white mb-2">🧠 About Me</h2>
+        <p class="text-gray-400">
+          I'm a curious builder and explorer of open-source tech. Wrenlabs is my playground for learning, breaking, and building. I specialize in home server setups, automation, containerization, and more.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-white mb-2">📬 Connect</h2>
+        <p class="text-gray-400">
+          Follow along or get in touch:
+        </p>
+        <ul class="list-none mt-2 space-y-1 text-gray-300">
+          <li><a href="https://github.com/dislikedzebra" class="text-blue-400 hover:underline">GitHub</a></li>
+          <li><a href="mailto:nathan@wrenlabs.net" class="text-blue-400 hover:underline">Email</a></li>
+        </ul>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
