@@ -7,44 +7,45 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-sans">
+    <Header />
+    <main class="max-w-4xl mx-auto px-6 py-16">
+      <h1 class="text-4xl font-bold text-white mb-4">🧬 Wrenlabs</h1>
+      <p class="text-lg text-gray-400 mb-8">
+        Welcome to my digital lab — a space where tech experiments, side projects, and portfolio pieces come to life.
+      </p>
+
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-white mb-2">🚀 Featured Projects</h2>
+        <ul class="list-disc list-inside space-y-2 text-gray-300">
+          <li><a href="/projects/homelab" class="text-blue-400 hover:underline">Homelab Infrastructure</a> – A deep dive into my self-hosted setup, services, and automation stack.</li>
+          <li><a href="/projects/portfolio-site" class="text-blue-400 hover:underline">Portfolio Site Build</a> – How I built this very site using Astro and Tailwind.</li>
+          <li><a href="/projects/k8s-lab" class="text-blue-400 hover:underline">Kubernetes Lab</a> – Container orchestration experiments and network playgrounds.</li>
+        </ul>
+      </section>
+
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-white mb-2">🧠 About Me</h2>
+        <p class="text-gray-400">
+          I'm a curious builder, sysadmin, and explorer of open-source tech. Wrenlabs is my playground for learning, breaking, and building. I specialize in home server setups, automation with Ansible, containerization, and more.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-white mb-2">📬 Connect</h2>
+        <p class="text-gray-400">
+          Follow along or get in touch:
+        </p>
+        <ul class="list-none mt-2 space-y-1 text-gray-300">
+          <li><a href="https://github.com/yourusername" class="text-blue-400 hover:underline">GitHub</a></li>
+          <li><a href="mailto:you@example.com" class="text-blue-400 hover:underline">Email</a></li>
+          <li><a href="/resume.pdf" class="text-blue-400 hover:underline">Résumé</a></li>
+        </ul>
+      </section>
+    </main>
+    <Footer />
+  </body>
 </html>
