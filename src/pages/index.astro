@@ -10,27 +10,25 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body class="bg-gray-900 text-gray-200 font-sans">
+  <body class="bg-gray-800 text-gray-200 font-sans">
     <Header />
     <main class="max-w-4xl mx-auto px-6 py-16">
-      <h1 class="text-4xl font-bold text-white mb-4">🧬 Wrenlabs</h1>
+      <h1 class="text-4xl font-bold text-white mb-4">🧬 WrenLabs</h1>
       <p class="text-lg text-gray-400 mb-8">
         Welcome to my digital lab — a space where tech experiments, side projects, and portfolio pieces come to life.
       </p>
 
       <section class="mb-16">
         <h2 class="text-2xl font-semibold text-white mb-2">🚀 Featured Projects</h2>
+          <li><a href="/projects/homelab" class="text-blue-400 hover:underline">Homelab Infrastructure</a> – A deep dive into my self-hosted setup, services, and automation stack.- COMING SOON </li>
         <ul class="list-disc list-inside space-y-2 text-gray-300">
-          <li><a href="/projects/homelab" class="text-blue-400 hover:underline">Homelab Infrastructure</a> – A deep dive into my self-hosted setup, services, and automation stack.</li>
-          <li><a href="/projects/portfolio-site" class="text-blue-400 hover:underline">Portfolio Site Build</a> – How I built this very site using Astro and Tailwind.</li>
-          <li><a href="/projects/k8s-lab" class="text-blue-400 hover:underline">Kubernetes Lab</a> – Container orchestration experiments and network playgrounds.</li>
         </ul>
       </section>
 
       <section class="mb-16">
         <h2 class="text-2xl font-semibold text-white mb-2">🧠 About Me</h2>
         <p class="text-gray-400">
-          I'm a curious builder, sysadmin, and explorer of open-source tech. Wrenlabs is my playground for learning, breaking, and building. I specialize in home server setups, automation with Ansible, containerization, and more.
+          I'm a curious builder and explorer of open-source tech. Wrenlabs is my playground for learning, breaking, and building. I specialize in home server setups, automation, containerization, and more.
         </p>
       </section>
 
@@ -40,9 +38,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
           Follow along or get in touch:
         </p>
         <ul class="list-none mt-2 space-y-1 text-gray-300">
-          <li><a href="https://github.com/yourusername" class="text-blue-400 hover:underline">GitHub</a></li>
-          <li><a href="mailto:you@example.com" class="text-blue-400 hover:underline">Email</a></li>
-          <li><a href="/resume.pdf" class="text-blue-400 hover:underline">Résumé</a></li>
+          <li><a href="https://github.com/dislikedzebra" class="text-blue-400 hover:underline">GitHub</a></li>
+          <li><a href="mailto:nathan@wrenlabs.net" class="text-blue-400 hover:underline">Email</a></li>
         </ul>
       </section>
     </main>
