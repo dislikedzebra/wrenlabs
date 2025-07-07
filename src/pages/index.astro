@@ -2,84 +2,50 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
-<BaseHead title="Wrenlabs Terminal" description="A tech lab by Nathan Wren" />
-
-<div class="bg-black text-green-400 font-mono min-h-screen flex flex-col">
-  <Header />
-
-  <main class="flex-1 p-6 max-w-4xl mx-auto">
-    <div id="terminal" class="bg-black border border-green-600 p-6 rounded-lg shadow-lg whitespace-pre-wrap">
-      <div>Wrenlabs v1.0.0</div>
-      <div>&nbsp;</div>
-      <div>> Welcome to the Wrenlabs terminal.</div>
-      <div>> Type <span class="text-yellow-400">'help'</span> to see available commands.</div>
-      <div>&nbsp;</div>
-      <div id="log" class="mb-4 space-y-1"></div>
-      <div class="command-line flex items-center">
-        <span>&gt; </span>
-        <input
-          id="input"
-          type="text"
-          class="bg-black text-green-400 border-none outline-none ml-2 w-full"
-          autocomplete="off"
-          autofocus
-        />
-        <span class="blink ml-1">█</span>
-      </div>
-    </div>
-  </main>
-
-  <Footer />
-</div>
-
-<script is:inline>
-  const input = document.getElementById('input');
-  const log = document.getElementById('log');
-
-  const commands = {
-    help: "Available commands:\n - projects\n - about\n - clear",
-    projects: "Check out:\n - /projects/homelab\n - /projects/portfolio-site\n - /projects/k8s-lab",
-    about: "redirect"
-  };
-
-  function printLine(text) {
-    const line = document.createElement('div');
-    line.textContent = text;
-    log.appendChild(line);
-  }
-
-  input?.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      const command = input.value.trim();
-      printLine(`> ${command}`);
-
-      if (command === 'clear') {
-        log.innerHTML = '';
-      } else if (commands[command]) {
-        if (commands[command] === 'redirect') {
-          window.location.href = '/about';
-        } else {
-          commands[command].split('\n').forEach(line => printLine(line));
-        }
-      } else {
-        printLine(`Command not found: '${command}'. Try 'help'.`);
-      }
-
-      input.value = '';
-      window.scrollTo(0, document.body.scrollHeight);
-    }
-  });
-</script>
-
-<style>
-  .blink {
-    animation: blink 1s step-start 0s infinite;
-  }
-  @keyframes blink {
-    50% {
-      opacity: 0;
-    }
-  }
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+ <style>
+<body class="bg-gray-800 text-gray-200 font-sans">
 </style>
+
+    <Header />
+    <main class="max-w-4xl mx-auto px-6 py-16">
+      <h1 class="text-4xl font-bold text-white mb-4">🧬 WrenLabs</h1>
+      <p class="text-lg text-gray-400 mb-8">
+        Welcome to my digital lab — a space where tech experiments, side projects, and portfolio pieces come to life.
+      </p>
+
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-white mb-2">🚀 Featured Projects</h2>
+          <li><a href="/pages/Terminal" class="text-blue-400 hover:underline">Terminal</a> – A deep dive into my self-hosted setup, services, and automation stack.- COMING SOON </li>
+        <ul class="list-disc list-inside space-y-2 text-gray-300">
+        </ul>
+      </section>
+
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold text-white mb-2">🧠 About Me</h2>
+        <p class="text-gray-400">
+          I'm a curious builder and explorer of open-source tech. Wrenlabs is my playground for learning, breaking, and building. I specialize in home server setups, automation, containerization, and more.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-white mb-2">📬 Connect</h2>
+        <p class="text-gray-400">
+          Follow along or get in touch:
+        </p>
+        <ul class="list-none mt-2 space-y-1 text-gray-300">
+          <li><a href="https://github.com/dislikedzebra" class="text-blue-400 hover:underline">GitHub</a></li>
+          <li><a href="mailto:nathan@wrenlabs.net" class="text-blue-400 hover:underline">Email</a></li>
+        </ul>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
